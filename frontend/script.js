@@ -44,6 +44,7 @@ function initialiseSquareObjects() {
       x: (i - 1) % 4,
       y: Math.floor((i - 1) / 4),
       canMove: false,
+      hasMerged: false,
       value: 0,
       element: null,
     });
@@ -95,6 +96,7 @@ function initialReveal() {
     const square = squares[index];
     revealSquare(square);
   });
+
 }
 
 let squareSize = getSquareSize();
@@ -117,88 +119,11 @@ function copySquare(fromSquare, toSquare) {
   toSquare.value = fromSquare.value;
 }
 
-function moveSquaresUp() {
-  for (let i = 0; i <= 15; i++) {
-    if (squares[i].canMove
-      && i >= 4 && squares[i - 4].canMove == false) {
-      let moveBy = 4;
-      if (i >= 8 && squares[i - 8].canMove == false) {
-        if (i >= 12 && squares[i - 12].canMove == false) {
-          moveBy = 12;
-        }
-        else {
-          moveBy = 8;
-        }
-      }
-      copySquare(squares[i], squares[i - moveBy]);
-      resetSquare(squares[i]);
-      movedThisTurn = true;
-      console.log(`Moved square ${i} to position ${i - moveBy}`);
-    }
-  }
-}
-
-function moveSquaresDown() {
-  for (let i = 15; i >= 0; i--) {
-    if (squares[i].canMove
-      && i <= 11 && squares[i + 4].canMove == false) {
-      let moveBy = 4;
-      if (i <= 7 && squares[i + 8].canMove == false) {
-        if (i <= 3 && squares[i + 12].canMove == false) {
-          moveBy = 12;
-        }
-        else {
-          moveBy = 8;
-        }
-      }
-      copySquare(squares[i], squares[i + moveBy]);
-      resetSquare(squares[i]);
-      movedThisTurn = true;
-      console.log(`Moved square ${i} to position ${i + moveBy}`);
-    }
-  }
-}
-
-function moveSquaresLeft() {
-  for (let i = 0; i <= 15; i++) {
-    if (squares[i].canMove
-      && squares[i].x > 0 && squares[i - 1].canMove == false) {
-      let moveBy = 1;
-      if (squares[i].x > 1 && squares[i - 2].canMove == false) {
-        if (squares[i].x > 2 && squares[i - 3].canMove == false) {
-          moveBy = 3;
-        }
-        else {
-          moveBy = 2;
-        }
-      }
-      copySquare(squares[i], squares[i - moveBy]);
-      resetSquare(squares[i]);
-      movedThisTurn = true;
-      console.log(`Moved square ${i} to position ${i - moveBy}`);
-    }
-  }
-}
-
-function moveSquaresRight() {
-  for (let i = 15; i >= 0; i--) {
-    if (squares[i].canMove
-      && squares[i].x < 3 && squares[i + 1].canMove == false) {
-      let moveBy = 1;
-      if (squares[i].x < 2 && squares[i + 2].canMove == false) {
-        if (squares[i].x < 1 && squares[i + 3].canMove == false) {
-          moveBy = 3;
-        }
-        else {
-          moveBy = 2;
-        }
-      }
-      copySquare(squares[i], squares[i + moveBy]);
-      resetSquare(squares[i]);
-      movedThisTurn = true;
-      console.log(`Moved square ${i} to position ${i - moveBy}`);
-    }
-  }
+function doubleSquare(toSquare) {
+  toSquare.value *= 2;
+  toSquare.element.style.backgroundColor = Color[toSquare.value];
+  toSquare.element.textContent = toSquare.value;
+  toSquare.hasMerged = true;
 }
 
 function revealNewSquare() {
@@ -223,6 +148,11 @@ function moveSquares(direction) {
   // Remove reveal animation classes from all squares
   squares.forEach(square => {
     square.element.classList.remove('revealed');
+  });
+
+  // Remove hasMerged flags from all squares
+  squares.forEach(square => {
+    square.hasMerged = false;
   });
 
   switch (direction) {
