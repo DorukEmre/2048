@@ -351,3 +351,72 @@ function moveSquaresRight() {
     }
   }
 }
+
+function testMoveUp() {
+  for (let i = 0; i <= 15; i++) {
+    if (squares[i].canMove && squares[i].y > 0) {
+      for (let j = squares[i].y - 1; j >= 0; j--) {
+        let checkIndex = squares[i].x + j * 4;
+        if (squares[checkIndex].canMove == false || squares[checkIndex].value == squares[i].value) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+}
+
+function testMoveDown() {
+  for (let i = 15; i >= 0; i--) {
+    if (squares[i].canMove && squares[i].y < 3) {
+      for (let j = squares[i].y + 1; j <= 3; j++) {
+        let checkIndex = squares[i].x + j * 4;
+        if (squares[checkIndex].canMove == false || squares[checkIndex].value == squares[i].value) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+}
+
+function testMoveLeft() {
+  for (let i = 0; i <= 15; i++) {
+    if (squares[i].canMove && squares[i].x > 0) {
+      for (let j = squares[i].x - 1; j >= 0; j--) {
+        let checkIndex = j + squares[i].y * 4;
+        if (squares[checkIndex].canMove == false || squares[checkIndex].value == squares[i].value) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+}
+
+function testMoveRight() {
+  for (let i = 15; i >= 0; i--) {
+    if (squares[i].canMove && squares[i].x < 3) {
+      for (let j = squares[i].x + 1; j <= 3; j++) {
+        let checkIndex = j + squares[i].y * 4;
+        if (squares[checkIndex].canMove == false || squares[checkIndex].value == squares[i].value) {
+          return true;
+        }
+      }
+    }
+  }
+  return false;
+}
+
+function checkGameOver() {
+
+  let canMoveUp = testMoveUp();
+  let canMoveDown = testMoveDown();
+  let canMoveLeft = testMoveLeft();
+  let canMoveRight = testMoveRight();
+
+  console.log(`Can Move Up: ${canMoveUp}, Down: ${canMoveDown}, Left: ${canMoveLeft}, Right: ${canMoveRight}`);
+
+  return canMoveUp == false && canMoveDown == false && canMoveLeft == false && canMoveRight == false;
+}
+

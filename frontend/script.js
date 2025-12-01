@@ -23,6 +23,7 @@ const Color = {
 }
 
 let movedThisTurn = false;
+let isGameOver = false;
 
 
 function getSquareSize() {
@@ -143,6 +144,11 @@ function revealNewSquare() {
 }
 
 function moveSquares(direction) {
+  if (isGameOver) {
+    console.log('Game is over. No more moves can be made.');
+    return;
+  }
+
   movedThisTurn = false;
 
   // Remove reveal animation classes from all squares
@@ -180,6 +186,11 @@ function moveSquares(direction) {
     revealNewSquare();
 
   drawSquares();
+
+  isGameOver = checkGameOver();
+  if (isGameOver) {
+    alert("Game Over! No more moves available.");
+  }
 
   console.log(squares);
 }
