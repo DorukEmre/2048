@@ -6,20 +6,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>2048 Game</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
 
 <body>
   <div class="game-container">
-    <h1>2048</h1>
-    <div class="score-container">
-      <span>Score: <span id="score">0</span></span>
-      <button id="restart-btn">Restart</button>
-    </div>
-    <div class="grid-container">
-      <!-- The grid will be filled by JavaScript -->
-    </div>
+    <header>
+      <div class="title">
+        <h1>2048</h1>
+      </div>
+      <div class="score-container">
+        <p>score</p>
+        <p id="score">0</p>
+      </div>
+      <button id="restart-btn">restart</button>
+    </header>
+    <main id="square-container">
+    </main>
+    <footer></footer>
   </div>
-  <script src="script.js"></script>
 </body>
 
 </html>
