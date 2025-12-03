@@ -28,10 +28,35 @@ function revealNewSquare() {
   console.log(`Revealed new square at position ${squareToReveal.id - 1}`);
 }
 
+function updateScore() {
+  const scoreElement = document.getElementById('score');
+  scoreElement.textContent = gs.score;
+}
 
-function processMovement(direction) {
-  if (gs.isGameOver) {
-    console.log('Game is over. No more moves can be made.');
+function handleWin() {
+  const title = document.getElementById('title');
+  title.textContent = "Victory!";
+
+  const header = document.querySelector('header');
+  header.classList.add('victory');
+}
+
+function handleGameOver() {
+  const title = document.getElementById('title');
+  title.textContent = "Game Over!";
+
+  const header = document.querySelector('header');
+  header.classList.add('gameover');
+}
+
+function checkWinCondition() {
+  const maxSquareValue = 2048;
+
+  return gs.squares.some(square => square.value === maxSquareValue);
+}
+
+function handleTurn(direction) {
+  if (gs.isGameOver || gs.hasWon) {
     return;
   }
 
@@ -49,15 +74,21 @@ function processMovement(direction) {
 
   moveSquares(direction);
 
+
   if (gs.movedThisTurn)
     revealNewSquare();
 
   drawSquares();
 
+  updateScore();
+
+  gs.hasWon = checkWinCondition();
+  if (gs.hasWon)
+    handleWin();
+
   gs.isGameOver = checkGameOver();
-  if (gs.isGameOver) {
-    alert("Game Over! No more moves available.");
-  }
+  if (gs.isGameOver)
+    handleGameOver();
 
   console.log(gs.squares);
 }
@@ -77,4 +108,4 @@ function drawSquares() {
 }
 
 
-export { processMovement, revealNewSquare, revealSquare, drawSquares };
+export { handleTurn, revealNewSquare, revealSquare, drawSquares };

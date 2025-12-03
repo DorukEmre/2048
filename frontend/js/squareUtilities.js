@@ -1,5 +1,5 @@
 import { Move } from './gameData.js';
-import { processMovement } from './gameEngine.js';
+import { handleTurn } from './gameEngine.js';
 
 function getSquareSize() {
 
@@ -45,7 +45,7 @@ function addKeyPressListener() {
   // Move on key press if arrow key is pressed
   window.addEventListener('keydown', (event) => {
     if (Object.values(Move).includes(event.key)) {
-      processMovement(event.key);
+      handleTurn(event.key);
     }
   });
 

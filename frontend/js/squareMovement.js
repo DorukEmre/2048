@@ -19,6 +19,7 @@ function doubleSquare(toSquare) {
   toSquare.element.style.backgroundColor = Color[toSquare.value];
   toSquare.element.textContent = toSquare.value;
   toSquare.hasMerged = true;
+  gs.score += toSquare.value;
 }
 
 function moveSquaresUp() {

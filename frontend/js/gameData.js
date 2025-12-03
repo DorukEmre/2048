@@ -24,6 +24,8 @@ const gameState = {
   squares: [],
   movedThisTurn: false,
   isGameOver: false,
+  hasWon: false,
+  score: 0
 };
 
 export { Move, Color, gameState };
