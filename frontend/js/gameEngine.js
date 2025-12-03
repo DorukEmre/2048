@@ -25,7 +25,7 @@ function revealNewSquare() {
 
   revealSquare(squareToReveal);
 
-  console.log(`Revealed new square at position ${squareToReveal.id - 1}`);
+  console.log(`Revealed new square at position ${squareToReveal.id}`);
 }
 
 function updateScore() {
@@ -108,4 +108,4 @@ function drawSquares() {
 }
 
 
-export { handleTurn, revealNewSquare, revealSquare, drawSquares };
+export { handleTurn, revealNewSquare, revealSquare, drawSquares, updateScore };

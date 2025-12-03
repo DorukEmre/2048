@@ -1,28 +1,21 @@
-
-import { gameState as gs, Move, Color } from './gameData.js';
-import { initialiseSquareObjects, initialReveal } from './init.js';
-import { drawSquares } from './gameEngine.js';
-import { addResizeListener, addKeyPressListener } from './squareUtilities.js';
+import { startNewGame } from './init.js';
+import { addResizeListener, addRestartButtonListener, addKeyPressListener } from './squareUtilities.js';
 
 
 function main() {
 
-  // Initialise array of square objects
-  initialiseSquareObjects(gs.squares);
-
-  // Reveal two initial squares
-  initialReveal(gs.squares);
-
-  // Draw initial squares on the DOM grid
-  drawSquares();
-
-  console.log(gs.squares);
+  // Initialise and start a new game
+  startNewGame();
 
   // Handles responsive square sizing
   addResizeListener();
 
+  // Handles restart button click
+  addRestartButtonListener();
+
   // Handles user input
   addKeyPressListener();
+
 }
 
 main();

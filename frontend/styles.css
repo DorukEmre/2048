@@ -7,7 +7,7 @@
 }
 
 body {
-  background: #04011f;
+  background: #3a3027;
   height: 100vh;
 }
 
@@ -16,7 +16,6 @@ body {
   padding: 1rem;
   max-width: 500px;
   height: 100%;
-  border: 1px solid red;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,7 +54,7 @@ header {
 .score-container {
   text-align: center;
   padding: 0.5rem 1.5rem;
-  background-color: #3b3834;
+  background-color: #2b2925;
   border-radius: 4px;
   border: none;
   margin-bottom: 1rem;
@@ -64,9 +63,10 @@ header {
 #restart-btn {
   text-align: center;
   padding: 0.75rem 1.5rem;
-  background-color: #d0634d;
+  background-color: #a24d3c;
   border-radius: 4px;
   border: none;
+  cursor: pointer;
 }
 
 
@@ -88,6 +88,7 @@ main {
 
 .square {
   background-color: #988675;
+  color: #2b2925;
   display: flex;
   justify-content: center;
   align-items: center;

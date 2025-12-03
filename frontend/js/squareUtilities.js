@@ -1,5 +1,6 @@
 import { Move } from './gameData.js';
 import { handleTurn } from './gameEngine.js';
+import { startNewGame } from './init.js';
 
 function getSquareSize() {
 
@@ -29,14 +30,16 @@ function updateSquareSizes() {
 
 function addResizeListener() {
 
-  window.addEventListener('resize', () => {
-    updateSquareSizes();
-  });
+  window.addEventListener('resize', updateSquareSizes);
 
-  window.addEventListener('onload', () => {
-    updateSquareSizes();
-  });
+  window.addEventListener('onload', updateSquareSizes);
+}
 
+// Event listener for restart button
+function addRestartButtonListener() {
+  const restartButton = document.getElementById('restart-btn');
+
+  restartButton.addEventListener('click', startNewGame);
 }
 
 // Event listener for key presses
@@ -48,7 +51,6 @@ function addKeyPressListener() {
       handleTurn(event.key);
     }
   });
-
 }
 
-export { getSquareSize, addResizeListener, addKeyPressListener };
+export { getSquareSize, addResizeListener, addRestartButtonListener, addKeyPressListener };

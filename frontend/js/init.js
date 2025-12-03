@@ -1,6 +1,7 @@
 import { getSquareSize } from './squareUtilities.js';
 import { revealSquare } from './gameEngine.js';
-import { Color } from './gameData.js';
+import { gameState as gs, Color } from './gameData.js';
+import { drawSquares, updateScore } from './gameEngine.js';
 
 function initialiseSquareObjects(squares) {
 
@@ -35,7 +36,7 @@ function initialiseSquareObjects(squares) {
 function initialReveal(squares) {
   const revealedIndices = new Set();
 
-  while (revealedIndices.size < 1) {
+  while (revealedIndices.size < 2) {
     const randomIndex = Math.floor(Math.random() * squares.length);
     revealedIndices.add(randomIndex);
   }
@@ -44,7 +45,30 @@ function initialReveal(squares) {
     const square = squares[index];
     revealSquare(square);
   });
-
 }
 
-export { initialiseSquareObjects, initialReveal };
+function initialiseGameState() {
+  gs.squares = [];
+  gs.movedThisTurn = false;
+  gs.isGameOver = false;
+  gs.hasWon = false;
+  gs.score = 0;
+}
+
+function startNewGame() {
+
+  // Initialise game state
+  initialiseGameState();
+  updateScore();
+
+  // Initialise array of square objects
+  initialiseSquareObjects(gs.squares);
+
+  // Reveal two initial squares
+  initialReveal(gs.squares);
+
+  // Draw initial squares on the DOM grid
+  drawSquares();
+}
+
+export { startNewGame };
