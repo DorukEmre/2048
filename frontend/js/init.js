@@ -55,11 +55,23 @@ function initialiseGameState() {
   gs.score = 0;
 }
 
+function restoreHeader() {
+  const title = document.getElementById('title');
+  title.textContent = "2048";
+
+  const header = document.querySelector('header');
+  header.classList.remove('victory', 'gameover');
+
+  updateScore();
+}
+
 function startNewGame() {
 
   // Initialise game state
   initialiseGameState();
-  updateScore();
+
+  // Restore header to initial state
+  restoreHeader();
 
   // Initialise array of square objects
   initialiseSquareObjects(gs.squares);
