@@ -62,9 +62,9 @@ function handleTurn(direction) {
 
   gs.movedThisTurn = false;
 
-  // Remove reveal animation classes from all squares
+  // Remove animation classes from all squares
   gs.squares.forEach(square => {
-    square.element.classList.remove('revealed');
+    square.element.classList.remove('revealed', 'merged');
   });
 
   // Remove hasMerged flags from all squares

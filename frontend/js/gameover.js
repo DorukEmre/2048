@@ -59,8 +59,6 @@ function checkGameOver() {
   let canMoveLeft = testMoveLeft();
   let canMoveRight = testMoveRight();
 
-  console.log(`Can Move Up: ${canMoveUp}, Down: ${canMoveDown}, Left: ${canMoveLeft}, Right: ${canMoveRight}`);
-
   return canMoveUp == false && canMoveDown == false && canMoveLeft == false && canMoveRight == false;
 }
 

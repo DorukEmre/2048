@@ -1,4 +1,4 @@
-import { getSquareSize } from './squareUtilities.js';
+import { setSquareSize } from './squareUtilities.js';
 import { revealSquare } from './gameEngine.js';
 import { gameState as gs, Color } from './gameData.js';
 import { drawSquares, updateScore } from './gameEngine.js';
@@ -17,16 +17,13 @@ function initialiseSquareObjects(squares) {
     });
   }
 
-  let squareSize = getSquareSize();
+  setSquareSize();
 
   // Create and assign DOM elements to each square object
   squares.forEach((square, i) => {
     const squareDiv = document.createElement('div');
     squareDiv.className = 'square';
     squareDiv.id = `square-${i}`;
-    squareDiv.style.width = `${squareSize}px`;
-    squareDiv.style.height = `${squareSize}px`;
-    squareDiv.style.fontSize = `${squareSize / 2}px`;
     squareDiv.style.backgroundColor = Color[0];
     square.element = squareDiv;
   });

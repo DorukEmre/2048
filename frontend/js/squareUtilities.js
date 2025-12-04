@@ -14,25 +14,20 @@ function getSquareSize() {
   return squareSize;
 }
 
+// Set square size CSS variable in root element
+function setSquareSize() {
+  const squareSize = getSquareSize();
+
+  document.documentElement.style.setProperty('--square-size', `${squareSize}px`);
+}
 
 // Event listeners to resize squares on window resize
 
-function updateSquareSizes() {
-  let squareSize = getSquareSize();
-
-  for (let i = 0; i <= 15; i++) {
-    const square = document.getElementById(`square-${i}`);
-    square.style.width = `${squareSize}px`;
-    square.style.height = `${squareSize}px`;
-    square.style.fontSize = `${squareSize / 2}px`;
-  }
-}
-
 function addResizeListener() {
 
-  window.addEventListener('resize', updateSquareSizes);
+  window.addEventListener('resize', setSquareSize);
 
-  window.addEventListener('onload', updateSquareSizes);
+  window.addEventListener('onload', setSquareSize);
 }
 
 // Event listener for restart button
@@ -53,4 +48,4 @@ function addKeyPressListener() {
   });
 }
 
-export { getSquareSize, addResizeListener, addRestartButtonListener, addKeyPressListener };
+export { setSquareSize, addResizeListener, addRestartButtonListener, addKeyPressListener };

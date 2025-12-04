@@ -6,6 +6,10 @@
   color: #f0f8ff;
 }
 
+:root {
+  --square-size: 0px;
+}
+
 body {
   background: #3a3027;
   height: 100vh;
@@ -74,7 +78,7 @@ header {
 /**   Game area   **/
 /*******************/
 
-main {
+#square-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
@@ -93,6 +97,9 @@ main {
   justify-content: center;
   align-items: center;
   border-radius: 6px;
+  height: var(--square-size);
+  width: var(--square-size);
+  font-size: calc(var(--square-size) / 2);
 }
 
 
@@ -101,7 +108,7 @@ main {
 /********************/
 
 .revealed {
-  animation: revealAnimation 0.3s ease-in-out;
+  animation: revealAnimation 0.4s ease-in-out;
 }
 
 @keyframes revealAnimation {
@@ -113,5 +120,23 @@ main {
   100% {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+.merged {
+  animation: mergeAnimation 0.4s ease-in-out;
+}
+
+@keyframes mergeAnimation {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
+
+  100% {
+    transform: scale(1);
   }
 }

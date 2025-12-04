@@ -20,6 +20,7 @@ function doubleSquare(toSquare) {
   toSquare.element.textContent = toSquare.value;
   toSquare.hasMerged = true;
   gs.score += toSquare.value;
+  toSquare.element.classList.add('merged');
 }
 
 function moveSquaresUp() {
