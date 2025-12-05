@@ -5,9 +5,10 @@ import { gameState as gs, Move, Color } from './gameData.js';
 
 function revealSquare(square) {
   square.canMove = true;
-  square.value = 2;
-  square.element.textContent = '2';
-  square.element.style.backgroundColor = Color[2];
+  let value = (Math.random() < 0.9) ? 2 : 4;
+  square.value = value;
+  square.element.textContent = value;
+  square.element.style.backgroundColor = Color[value];
   square.element.classList.add('revealed');
 }
 
